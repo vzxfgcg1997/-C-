@@ -1,0 +1,254 @@
+#include <iostream.h>
+#include <fstream.h>
+#include <cstdlib>
+#include <cstring>
+#include "libmylib.h"
+void startg();
+void patients();
+void patientst();
+void laboratory();
+void treatments();
+void patientinformation();
+void medicines();
+void clinics();
+void doctors();
+void patientadd();
+void recipe();
+void testresult();
+void exit();
+ofstream clinicsf;
+ofstream Patientsinf;
+ifstream Patientsinfin;
+ofstream laboratoryf;
+ofstream medicinesf;
+ofstream doctorsf;
+ofstream testresultf;
+ofstream treatmentsf;
+ofstream testtypef;
+ofstream recipef;
+main()
+{
+medicinesf.open("medicines.txt",ios::app);
+recipef.open("recipe.txt",ios::app);
+testresultf.open("test result.txt",ios::app);
+treatmentsf.open("treatments.txt",ios::app);
+testtypef.open("test type.txt",ios::app);
+clinicsf.open("clinics.txt",ios::app);
+laboratoryf.open("laboratory.txt",ios::app);
+doctorsf.open("doctorsf.txt",ios::app);
+Patientsinf.open("Patients.txt",ios::app);
+Patientsinfin.open("Patients.txt",ios::in);
+std:: string username="Abo Fahmy Ghallab",u ;
+int pass=774455,p;
+if(clinicsf&&laboratoryf&&medicinesf&&doctorsf&&Patientsinf&&treatmentsf)
+{for( ; ; ){
+cout<<"Enter user name=(Abo Fahmy Ghallab)\t";std:: getline(cin,u);
+if(u==username){cout<<"Enter password=(774455)\t";
+cin>>p;
+verification(p);}
+system("CLS");if(u==username && p==pass){startg();break;}
+else if(u!=username || p!=pass){cout<<"User name or Password non vaild try agin"<<endl;}}
+}else if(!clinicsf||!laboratoryf||!doctorsf||!medicinesf||!Patientsinf||!treatmentsf)	
+{cout<<"erorr file"<<endl;perror("Error");exit(EXIT_FAILURE); }
+}
+void startg()
+	{
+int num;
+cout<<"\n\n\t1. Patients";
+cout<<"\n\n\t2. Laboratory";
+cout<<"\n\n\t3. Medicines";
+cout<<"\n\n\t4. Clinics";
+cout<<"\n\n\t5. Doctors file";
+cout<<"\n\n\t6. EXIT";
+cout<<"\n\n\tPlease Select Your Option (1-6) ";
+cin>>num;
+if(num<=6&&num>=1){
+system("CLS");
+	switch(num){
+case 1: patients();break;
+case 2: laboratory();break;
+case 3:	medicines();break;
+case 4: clinics();break;
+case 5: doctors();break;
+case 6:exit();break;
+default :cout<<"\a";
+;}}else{cout<<"erorr opiton you have 3 try"<<endl;}}
+void patients()
+{
+int num6;
+cout<<"\n\n\t1. Patients";
+cout<<"\n\n\t2. Patient document";
+cout<<"\n\n\t3. Treatments";
+cout<<"\n\n\t4. Recipe";
+cout<<"\n\n\t5. Test result";
+cout<<"\n\n\t6. bakc";
+cout<<"\n\n\tPlease Select Your Option (1-6) ";cin>>num6;
+system("CLS");
+	switch(num6)
+{
+	case 1:patientst();break;
+	case 2:patientadd();break;
+	case 3:treatments();break;
+	case 4:recipe();break;
+	case 5:testresult();break;
+	case 6:startg();break;
+}
+system("CLS");}
+void patientst(){int num2;
+	cout<<"\n\n\t1. Patient information";
+cout<<"\n\n\t2. Add new patient";
+cout<<"\n\n\t3. Delete patient";
+cout<<"\n\n\t4. Edit patient info";
+cout<<"\n\n\t5. Search by";
+cout<<"\n\n\t6. bakc";
+cout<<"\n\n\tPlease Select Your Option (1-6) ";cin>>num2;
+system("CLS");
+	switch(num2)
+{
+	case 1:patientinformation();break;
+	case 2:patientadd();break;
+	case 3:cout<<"ghd";break;
+	case 4:cout<<"ghd";break;
+	case 5:cout<<"ghd";break;
+	case 6:startg();break;
+}
+system("CLS");}
+Medicines p[10]={};
+void medicines()
+{std:: string exit;int n;
+for(int i=0;i<10;i++){
+	cout<<"1- Add clinic"<<endl<<"2- back"<<endl;
+	cout<<"chose opiton (1-2)  ";cin>>n;
+	system("CLS");
+if(n==1){
+cout<<"enter id>>>>enter medicines nametenter price "<<endl;
+cin>>p[i].id>>p[i].medicines_name>>p[i].price;
+verification3(p[i].id,p[i].price);
+medicinesf<<p[i].id<<' '<<p[i].medicines_name<<' '<<p[i].price<<endl;}
+if(n==2){startg();}}
+medicinesf.close();
+}
+
+void clinics()
+{Clinics c;std:: string exit;int n;
+	do{
+	cout<<"1- Add clinic"<<endl<<"2- back"<<endl;
+	cout<<"chose opiton (1-2)  ";cin>>n;
+	system("CLS");
+if(n==1){cout<<"id\t"<<"clinic name\t"<<"working days\n";
+cin>>c.id>>c.clinic_name>>c.working_days;
+clinicsf<<c.id<<' '<<c.clinic_name<<' '<<c.working_days<<endl;
+	system("CLS");}
+if(n==2)
+{startg();}
+}while(exit!="exit");
+clinicsf.close();
+}
+void doctors()
+{Doctors_file d;
+int n;
+char n2;
+do{
+	cout<<"1- Add clinic"<<endl<<"2- back"<<endl;
+	cout<<"chose opiton (1-2)  ";cin>>n;
+	system("CLS");
+if(n==1){cout<<"enter id "<<"enter a doctor name"<<"enter a birithday dd mm yyyy"<<endl;
+cin>>d.id>>d.doctor_name>>d.db.d>>d.db.m>>d.db.y; 
+verification2(d.id,d.db.d,d.db.m,d.db.y);
+	doctorsf<<d.id<<' '<<d.doctor_name<<' '<<d.db.d<<' '<<d.db.m<<' '<<d.db.y<<endl;}
+if(n==2){startg();}
+}while(n2!='a');
+}
+void laboratory()
+{Test_type t; Department de;int n;char n2;
+do{
+	if(n==1){cout<<"Department name"<<"enter Test type name"<<endl;
+cin>>de.lab_dept_name>>t.test_type;
+laboratoryf<<de.lab_dept_name<<' '<<t.test_type<<endl;	}
+if(n==2){startg();}
+
+}while(n2!='a');
+laboratoryf.close();
+}
+void patientinformation()
+{}
+void patientadd()
+{patientads add[10]={};int n;	
+	for(int i=0;i<10;i++){
+	cout<<"1- Add clinic"<<endl<<"2- back"<<endl;
+	cout<<"chose opiton (1-2)  ";cin>>n;
+	system("CLS");
+if(n==1){
+cout<<"id\t"<<"first name "<<"last name "<<"genedr "<<"phone num "<<"age "<<"name city "<<"street name "<<"street num "<<"home number"<<"day"<<"month"<<"year\n";
+cin>>add[i].id>>add[i].fn>>add[i].ln>>add[i].gr>>add[i].phn>>add[i].age>>add[i].adp.cina>>add[i].adp.stna>>add[i].adp.stnu>>add[i].adp.hobu>>add[i].date.d>>add[i].date.m>>add[i].date.y;
+verification2(add[i].id,add[i].phn,add[i].adp.stnu,add[i].adp.hobu);
+Patientsinf<<add[i].id<<' '<<add[i].fn<<' '<<add[i].ln<<' '<<add[i].gr<<' '<<add[i].phn<<' '<<add[i].age<<' '<<add[i].adp.cina<<' '<<add[i].adp.stna<<' '<<add[i].adp.stnu<<' '<<add[i].adp.hobu<<endl;
+system("CLS");}
+else if(n==2)
+{patients();}
+Patientsinf.close();}
+}
+treatmentss tre[10]={};int n;
+void testresult()
+{
+for(int i=0;i<10;i++){cout<<"1- Add clinic"<<endl<<"2- back"<<endl;
+	cout<<"chose opiton (1-2)  ";cin>>n;
+	system("CLS");
+if(n==1){
+cout<<">>tre[i].patient_name>>tre[i].doctor_name>>tre[i].date.d>>tre[i].date.m>>tre[i].date.y:"<<endl;
+cin>>tre[i].patient_name>>tre[i].doctor_name>>tre[i].date.d>>tre[i].date.m>>tre[i].date.y;	
+treatmentsf<<tre[i].patient_name<<' '<<tre[i].doctor_name<<' '<<tre[i].date.d<<' '<<tre[i].date.m<<' '<<tre[i].date.y;}
+}}
+void treatments()
+{
+for(int i=0;i<10;i++){cout<<"1- Add clinic"<<endl<<"2- back"<<endl;
+	cout<<"chose opiton (1-2)  ";cin>>n;
+	system("CLS");
+if(n==1){
+cout<<">>tre[i].patient_name>>tre[i].doctor_name>>tre[i].lab_category>>tre[i].test_type>>tre[i].information>>tre[i].date.d>>tre[i].date.m>>tre[i].date.y:"<<endl;
+cin>>tre[i].patient_name>>tre[i].doctor_name>>tre[i].lab_category>>tre[i].test_type>>tre[i].information>>tre[i].date.d>>tre[i].date.m>>tre[i].date.y;	
+treatmentsf<<tre[i].patient_name<<' '<<tre[i].doctor_name<<' '<<tre[i].lab_category<<' '<<tre[i].test_type<<' '<<tre[i].information<<' '<<tre[i].date.d<<' '<<tre[i].date.m<<' '<<tre[i].date.y;
+}
+else if(n==2)
+{patients();}
+}}
+void testtype()
+{
+for(int i=0;i<10;i++){
+testtypes abb[10]={};
+	cout<<"1- Add clinic"<<endl<<"2- back"<<endl;
+	cout<<"chose opiton (1-2)  ";cin>>n;
+	system("CLS");
+if(n==1){
+cout<<">>abb[i].lab_dept_name>>abb[i].start_value>>abb[i].unit;\n";
+cin>>abb[i].lab_dept_name>>abb[i].start_value>>abb[i].unit;
+testtypef<<abb[i].lab_dept_name<<' '<<abb[i].start_value<<' '<<abb[i].unit<<endl;
+system("CLS");}
+else if(n==2)
+{patients();}	
+}}
+void totalpriceofmedicines()
+{int sumf=0;
+for (int i = 0; i < 10;i++){sumf += p[i].price;}
+cout<<sumf;}
+void recipe()
+{	
+for(int i=0;i<10;i++){
+recipes arr[10]={};
+	cout<<"1- Add clinic"<<endl<<"2- back"<<endl;
+	cout<<"total price of medicines="<<endl;
+	totalpriceofmedicines();
+	cout<<"chose opiton (1-2)  ";cin>>n;
+	system("CLS");
+if(n==1){
+cout<<">>abb[i].lab_dept_name>>abb[i].start_value>>abb[i].unit;\n";
+cin>>arr[i].patient_name>>arr[i].doctor_name>>arr[i].medicinesh>>arr[i].date.d>>arr[i].date.m>>arr[i].date.y;
+recipef<<arr[i].patient_name<<' '<<arr[i].doctor_name<<' '<<arr[i].medicinesh<<' '<<arr[i].date.d<<' '<<arr[i].date.m<<' '<<arr[i].date.y<<endl;
+system("CLS");}
+else if(n==2)
+{patients();}	
+}
+}
+void exit()
+{cout<<"Thank You"<<endl;
+exit(EXIT_FAILURE);	}
